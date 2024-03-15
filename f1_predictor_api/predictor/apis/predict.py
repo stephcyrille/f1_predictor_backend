@@ -11,7 +11,6 @@ class PostPredictionRequest(APIView):
     if serializer.is_valid(raise_exception=True):
       # Create data object to save in the database
       # serializer.save()
-      print(serializer.data)
       driver = serializer.data['driverId']
       circuit = serializer.data['circuitId']
       res = {
