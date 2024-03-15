@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from constructors.models import Constructor
 
 
 class Driver(models.Model):
@@ -9,8 +10,8 @@ class Driver(models.Model):
   driver_is_active = models.IntegerField('Is active')
   age = models.IntegerField('Age', null=True)
   full_name = models.CharField('Driver Name', max_length=250, null=True)
-  driver_avg_point = models.FloatField('Points AVG', null=True)
-  driver_avg_speed = models.FloatField('Speed AVG', null=True)
+  driver_avg_point = models.DecimalField('Points AVG', null=True, max_digits=10, decimal_places=2)
+  driver_avg_speed = models.DecimalField('Speed AVG', null=True, max_digits=10, decimal_places=2)
   race_end_bf_2015 = models.IntegerField('Race ends before 2015', null=True)
   race_end_in_2015 = models.IntegerField('Race ends in 2015', null=True)
   race_end_in_2016 = models.IntegerField('Race ends in 2016', null=True)
@@ -24,6 +25,7 @@ class Driver(models.Model):
   driver_most_won_circuit_id = models.IntegerField('Most won circuit ID', null=True)
   driver_nber_of_races_won = models.IntegerField('Number of races won', null=True)
   driver_nber_of_times_in_top_10 = models.IntegerField('Number of time in the top 10', null=True)
+  constructorId = models.ForeignKey(Constructor, on_delete=models.CASCADE)
   createdDate = models.DateTimeField(blank=True, editable=False, default=timezone.now)
   updateDate = models.DateTimeField(blank=True, editable=False, null=True)
   isArchived = models.BooleanField(default=False, blank=True)
