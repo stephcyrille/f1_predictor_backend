@@ -8,4 +8,12 @@ class PredictorRequestSerializer(serializers.ModelSerializer):
     exclude = ["id"]
 
 class PredictorResponseSerializer(serializers.Serializer):
-  pass
+  race_rank = serializers.IntegerField(required=True)
+  driverId = serializers.IntegerField(required=True)
+  circuitId = serializers.IntegerField(required=True)
+
+  def create(self):
+    return ""
+
+  def update(self):
+    return ""
