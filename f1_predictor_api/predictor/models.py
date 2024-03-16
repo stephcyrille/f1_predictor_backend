@@ -37,12 +37,10 @@ class PredictorRequest(models.Model):
         nbr_of_zero -= digits
         surfix = f"{'0' * nbr_of_zero}{102}"
         self.ref = prefix + surfix
-
-        return super(PredictorRequest, self).save(*args, **kwargs)
     else:
       # Write the update date automatically when we update the object
       self.updateDate = timezone.now()
-      return super(PredictorRequest, self).save(*args, **kwargs)
+    return super(PredictorRequest, self).save(*args, **kwargs)
     
   def __str__(self) -> str:
     return self.ref

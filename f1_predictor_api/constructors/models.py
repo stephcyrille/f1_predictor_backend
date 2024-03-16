@@ -13,7 +13,7 @@ class Constructor(models.Model):
   constructor_country = models.CharField('Country', max_length=120, null=False)
   constructor_is_active = models.IntegerField('Is active', null=False)
   constructor_races_won = models.IntegerField('Number of races won', null=False)
-  constructor_avg_point = models.DecimalField('Constructor AVG points', null=False, max_digits=10, decimal_places=2)
+  constructor_avg_point = models.DecimalField('Constructor AVG points', null=True, max_digits=10, decimal_places=2)
   constructor_times_in_top_10 = models.IntegerField('Number the time in the top 10', null=False)
   createdDate = models.DateTimeField(blank=True, editable=False, default=timezone.now)
   updateDate = models.DateTimeField(blank=True, editable=False, null=True)
@@ -29,6 +29,9 @@ class Constructor(models.Model):
     if self.id:
       # Write the update date automatically when we update the object
       self.updateDate = timezone.now()
-      return super(Constructor, self).save(*args, **kwargs)
+    return super(Constructor, self).save(*args, **kwargs)
+  
+  def __str__(self) -> str:
+    return f"{self.constructor_name} ({self.constructor_country})"
 
 

@@ -43,6 +43,6 @@ class Driver(models.Model):
     if self.id:
       # Write the update date automatically when we update the object
       self.updateDate = timezone.now()
-      return super(Driver, self).save(*args, **kwargs)
+    return super(Driver, self).save(*args, **kwargs)
 
 
