@@ -29,7 +29,7 @@ class Driver(models.Model):
   driver_most_won_circuit_id = models.IntegerField('Most won circuit ID', null=True)
   driver_nber_of_races_won = models.IntegerField('Number of races won', null=True)
   driver_nber_of_times_in_top_10 = models.IntegerField('Number of time in the top 10', null=True)
-  constructorId = models.ForeignKey(Constructor, on_delete=models.CASCADE)
+  constructorId = models.ForeignKey(Constructor, on_delete=models.CASCADE, null=True, blank=True)
   createdDate = models.DateTimeField(blank=True, editable=False, default=timezone.now)
   updateDate = models.DateTimeField(blank=True, editable=False, null=True)
   isArchived = models.BooleanField(default=False, blank=True)
@@ -44,5 +44,9 @@ class Driver(models.Model):
       # Write the update date automatically when we update the object
       self.updateDate = timezone.now()
     return super(Driver, self).save(*args, **kwargs)
+  
+  def __str__(self):
+      return self.full_name
+  
 
 
