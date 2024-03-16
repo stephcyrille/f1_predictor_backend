@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'predictor',
     'constructors',
-    'drivers'
+    'drivers',
+    'circuits',
 ]
 
 MIDDLEWARE = [
