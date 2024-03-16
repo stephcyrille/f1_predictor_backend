@@ -1,6 +1,11 @@
 from django.db import models
 from django.utils import timezone
+from django.utils.text import slugify
 
+
+def logo_path(instance, filename):
+  constructor_slug = slugify(instance.constructor_name)
+  return f"constructors/logos/{constructor_slug}"
 
 class Constructor(models.Model):
   constructorId = models.IntegerField('Constructor ID', null=False)
@@ -14,6 +19,7 @@ class Constructor(models.Model):
   updateDate = models.DateTimeField(blank=True, editable=False, null=True)
   isArchived = models.BooleanField(default=False, blank=True)
   # TODO Add the picture of the constructor
+  logo = models.FileField(upload_to=logo_path, null=True)
 
   def save(self, *args, **kwargs):
     """ 

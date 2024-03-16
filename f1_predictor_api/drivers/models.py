@@ -1,7 +1,11 @@
 from django.db import models
 from django.utils import timezone
+from django.utils.text import slugify
 from constructors.models import Constructor
 
+def picture_path(instance, filename):
+  driver_slug = slugify(instance.full_name)
+  return f"pictures/logos/{driver_slug}"
 
 class Driver(models.Model):
   driverId = models.IntegerField('Driver ID', null=True)
@@ -29,7 +33,7 @@ class Driver(models.Model):
   createdDate = models.DateTimeField(blank=True, editable=False, default=timezone.now)
   updateDate = models.DateTimeField(blank=True, editable=False, null=True)
   isArchived = models.BooleanField(default=False, blank=True)
-  # TODO Add the picture of the driver
+  picture = models.FileField(upload_to=picture_path, null=True)
 
   def save(self, *args, **kwargs):
     """ 
