@@ -33,7 +33,7 @@ class Driver(models.Model):
   createdDate = models.DateTimeField(blank=True, editable=False, default=timezone.now)
   updateDate = models.DateTimeField(blank=True, editable=False, null=True)
   isArchived = models.BooleanField(default=False, blank=True)
-  picture = models.FileField(upload_to=picture_path, null=True)
+  picture = models.FileField(upload_to=picture_path, null=True, blank=True)
 
   def save(self, *args, **kwargs):
     """ 
