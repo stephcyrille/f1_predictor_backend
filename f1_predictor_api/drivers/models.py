@@ -5,7 +5,7 @@ from constructors.models import Constructor
 
 def picture_path(instance, filename):
   driver_slug = slugify(instance.full_name)
-  return f"pictures/logos/{driver_slug}"
+  return f"drivers/pictures/{driver_slug}/{filename}"
 
 class Driver(models.Model):
   driverId = models.IntegerField('Driver ID', null=True)
