@@ -4,7 +4,15 @@ from django.utils.text import slugify
 
 def circuit_path(instance, filename):
   circuit_slug = slugify(instance.name)
-  return f"circuits/pictures/{circuit_slug}/{filename}"
+  return f"circuits/{circuit_slug}/track/{filename}"
+
+def circuit_card_path(instance, filename):
+  circuit_slug = slugify(instance.name)
+  return f"circuits/{circuit_slug}/card/{filename}"
+
+def circuit_country_path(instance, filename):
+  circuit_slug = slugify(instance.name)
+  return f"circuits/{circuit_slug}/flag/{filename}"
 
 class Circuit(models.Model):
   circuitId = models.IntegerField('Circuit ID', unique=True)
@@ -18,6 +26,8 @@ class Circuit(models.Model):
   updateDate = models.DateTimeField(blank=True, editable=False, null=True)
   isArchived = models.BooleanField(default=False, blank=True)
   picture = models.FileField(upload_to=circuit_path, null=True, blank=True)
+  card_img = models.FileField(upload_to=circuit_card_path, null=True, blank=True)
+  country_img = models.FileField(upload_to=circuit_country_path, null=True, blank=True)
 
   def save(self, *args, **kwargs):
     """ 

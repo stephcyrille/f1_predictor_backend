@@ -27,6 +27,7 @@ urlpatterns = [
     path('apis/v1/doc/', schema_view),
     path('apis/v1/predictor/', include('predictor.urls')),
     path('apis/v1/drivers/', include('drivers.urls')),
+    path('apis/v1/circuits/', include('circuits.urls')),
 ]
 
 # Serve static and media files during development
