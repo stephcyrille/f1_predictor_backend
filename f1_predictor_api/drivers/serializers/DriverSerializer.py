@@ -10,12 +10,20 @@ class DriverDetailSerializer(serializers.ModelSerializer):
   constructor_img = serializers.SerializerMethodField()
 
   def get_driver_img(self, instance):
+    # TODO add a dumy image istead of an empty string
+    try:
       driver_img = get_upload_host(self.context["request"]) + instance.picture.url
-      return driver_img
+    except:
+       driver_img = ''
+    return driver_img
 
   def get_constructor_img(self, instance):
+    # TODO add a dumy image istead of an empty string
+    try:
       constructor_img = get_upload_host(self.context["request"]) + instance.constructorId.logo.url
-      return constructor_img
+    except:
+      constructor_img = ''
+    return constructor_img
 
   class Meta:
     model = Driver
