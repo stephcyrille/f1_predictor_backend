@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'constructors',
     'drivers',
     'circuits',
+    'results',
 ]
 
 MIDDLEWARE = [
