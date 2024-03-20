@@ -1,3 +1,4 @@
+import math
 import pandas as pd
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Model
@@ -20,6 +21,8 @@ def make_a_query(model_class:Model, **kwargs):
       queryset = model_class.objects.filter(constructorId=kwargs['constructorId'],
                                          circuitId=kwargs['circuitId'], 
                                          driverId=kwargs['driverId'])
+    else:
+       queryset = model_class.objects.filter()
     return queryset
 
 
@@ -31,12 +34,74 @@ def make_model_df(model:Model, **kwarge) -> pd.DataFrame:
     else:
       return pd.DataFrame([])
 
-def compose_the_dataframe(driverId, constructorId, circuitId) -> pd.DataFrame:
-    circuits = make_a_query(Circuit, circuitId=circuitId)
-    constructors = make_a_query(Constructor, constructorId=constructorId)
-    drivers = make_a_query(Driver, driverId=driverId)
-    race_results = make_a_query(RaceResult, circuitId=circuitId, 
+def race_result_base_data(prev_races:pd.DataFrame, df_races_results:pd.DataFrame, 
+                         driverId:int, constructorId:int, circuitId:int, year:int, 
+                         race_round:int, statusId = 1, points = 0) -> list:
+  if prev_races.shape[0] > 0:
+    grid = prev_races.iloc[0]['grid']
+    race_rank = prev_races.iloc[0]['race_rank'] # value to predict
+    points = prev_races['points'].mean() # by default is 0
+    laps = prev_races['laps'].max()
+    milliseconds = int(prev_races['milliseconds'].median())
+    fastestLap = int(prev_races['fastestLap'].median())
+    fastestLapTime = int(prev_races['fastestLapTime'].median())
+    fastestLapSpeed = prev_races['fastestLapSpeed'].mean()
+    statusId = statusId
+  else:
+    grid = math.ceil(df_races_results['grid'].mean())
+    race_rank = df_races_results['race_rank'].median()
+    points = points
+    laps = df_races_results['laps'].median()
+    milliseconds = int(df_races_results['milliseconds'].median())
+    fastestLap = int(df_races_results['fastestLap'].median())
+    fastestLapTime = int(df_races_results['fastestLapTime'].median())
+    fastestLapSpeed = df_races_results['fastestLapSpeed'].mean()
+    statusId = statusId
+
+  data = [1, 2, driverId, constructorId, grid, race_rank, points, laps, milliseconds, fastestLap, 
+          fastestLapTime, fastestLapSpeed, statusId, year, race_round, circuitId, 'Circuit dummy name']
+  return data
+
+def compose_the_base_df(driverId, constructorId, circuitId, race_round, year) -> pd.DataFrame:
+    colums_names = ['resultId', 'raceId', 'driverId', 'constructorId', 'grid', 'race_rank', 'points', 'laps', 
+                   'milliseconds', 'fastestLap', 'fastestLapTime','fastestLapSpeed', 'statusId', 'year', 
+                   'round', 'circuitId', 'name']
+    circuits_df = make_model_df(Circuit, circuitId=circuitId)
+    constructors_df = make_model_df(Constructor, constructorId=constructorId)
+    drivers_df = make_model_df(Driver, driverId=driverId)
+    prev_results_df = make_model_df(RaceResult, circuitId=circuitId, 
                                 constructorId=constructorId,
                                 driverId=driverId)
-    
-    return 0
+    race_results_df = make_model_df(RaceResult)
+
+    try:
+        # We need to chek if all the datasets are empty except the race result dataset
+        if circuits_df.shape[0] == 0 or constructors_df.shape[0] == 0 or drivers_df.shape[0] == 0:
+          response = {
+            "data": pd.DataFrame([]),
+            "errorCode": 7400,
+            "message": "There is some missing values"
+          }
+        else:
+          result_data = race_result_base_data(prev_results_df, race_results_df, driverId, 
+                                                 constructorId, circuitId, year, race_round)
+          df = pd.DataFrame([result_data], columns=colums_names) 
+          response = {
+            "data": df,
+            "errorCode": 7200,
+            "message": f"Dataframe size {df.shape[0]}",
+            "extra": {
+               "circuit_df": circuits_df,
+               "constructors_df": constructors_df,
+               "drivers_df": drivers_df
+            }
+          }
+          return response
+    except Exception as e:
+      response = {
+        "data": pd.DataFrame([]),
+        "errorCode" : 7500,
+        "message" : e.__str__()
+      }
+      return response
+  
