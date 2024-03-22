@@ -1,4 +1,5 @@
 import pandas as pd
+from sklearn.preprocessing import LabelEncoder
 
 def convert_queryset_to_dataframe(queryset):
   # Get the model class from the queryset
@@ -16,4 +17,10 @@ def convert_queryset_to_dataframe(queryset):
 
   # Convert the queryset to a pandas DataFrame
   df = pd.DataFrame(list(data))
+  return df
+
+def encode_labels(df:pd.DataFrame, cols:list[str]) -> pd.DataFrame:
+  le = LabelEncoder()
+  for i in cols:
+      df[i] = le.fit_transform(df[i])
   return df

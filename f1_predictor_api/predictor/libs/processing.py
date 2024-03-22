@@ -1,5 +1,6 @@
 import math
 import pandas as pd
+import numpy as np
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Model
 from circuits.models import Circuit
@@ -7,7 +8,7 @@ from constructors.models import Constructor
 from drivers.models import Driver
 from results.models import RaceResult
 
-from predictor.libs.utils import convert_queryset_to_dataframe
+from predictor.libs.utils import convert_queryset_to_dataframe, encode_labels
 
 def make_a_query(model_class:Model, **kwargs):
     queryset = None
@@ -79,7 +80,7 @@ def compose_the_base_df(driverId, constructorId, circuitId, race_round, year) ->
         if circuits_df.shape[0] == 0 or constructors_df.shape[0] == 0 or drivers_df.shape[0] == 0:
           response = {
             "data": pd.DataFrame([]),
-            "errorCode": 7400,
+            "statusCode": 7400,
             "message": "There is some missing values"
           }
         else:
@@ -88,10 +89,11 @@ def compose_the_base_df(driverId, constructorId, circuitId, race_round, year) ->
           df = pd.DataFrame([result_data], columns=colums_names) 
           response = {
             "data": df,
-            "errorCode": 7200,
+            "statusCode": 7200,
             "message": f"Dataframe size {df.shape[0]}",
             "extra": {
-               "circuit_df": circuits_df,
+               "predict_df": df,
+               "circuits_df": circuits_df,
                "constructors_df": constructors_df,
                "drivers_df": drivers_df
             }
@@ -100,8 +102,34 @@ def compose_the_base_df(driverId, constructorId, circuitId, race_round, year) ->
     except Exception as e:
       response = {
         "data": pd.DataFrame([]),
-        "errorCode" : 7500,
+        "statusCode" : 7500,
         "message" : e.__str__()
       }
       return response
   
+def compose_prediction_df(df_dict:dict) -> pd.DataFrame:
+  df_prediction = df_dict['predict_df']
+  circuits_df = df_dict['circuits_df']
+  constructors_df = df_dict['constructors_df']
+  drivers_df = df_dict['drivers_df']
+
+  df_prediction = df_prediction.merge(drivers_df, on='driverId', how='inner')
+  df_prediction = df_prediction.merge(constructors_df, on='constructorId', how='inner')
+  df_prediction = df_prediction.merge(circuits_df[['circuitId', 'circuits_is_active']], on='circuitId', how='inner')
+  
+  return df_prediction
+
+def prepare_the_prediction(df:pd.DataFrame, 
+                           to_encode_label:list = ['grid', 'race_rank', 'laps', 'fastestLap', 'statusId'],
+                           not_correlated_cols:list = ['constructorId', 'raceId', 'resultId', 
+                                                'year', 'round', 'circuitId', 'age',
+                                                'driver_most_won_circuit_id']) -> pd.DataFrame:
+  #  Not corr columns
+  df_pred = df.drop(not_correlated_cols, axis=1)
+  df_pred['driver_avg_point'] = df_pred['driver_avg_point'].astype('float64')
+  df_pred['driver_avg_speed'] = df_pred['driver_avg_speed'].astype('float64')
+  df_pred['constructor_avg_point'] = df_pred['constructor_avg_point'].astype('float64')
+  cols = df_pred.select_dtypes(np.object_).columns.to_list()
+  df_pred = df_pred.drop(cols, axis=1)
+  df_pred = encode_labels(df_pred, to_encode_label)
+  return df_pred
