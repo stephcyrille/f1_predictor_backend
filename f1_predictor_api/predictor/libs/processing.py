@@ -78,11 +78,21 @@ def compose_the_base_df(driverId, constructorId, circuitId, race_round, year) ->
     try:
         # We need to chek if all the datasets are empty except the race result dataset
         if circuits_df.shape[0] == 0 or constructors_df.shape[0] == 0 or drivers_df.shape[0] == 0:
+          if circuits_df.shape[0] == 0:
+            df_empty = 'Circuit'
+            df_id = circuitId
+          if constructors_df.shape[0] == 0:
+            df_empty = 'Constructor'
+            df_id = constructorId
+          if drivers_df.shape[0] == 0:
+            df_empty = 'Driver'
+            df_id = driverId
           response = {
             "data": pd.DataFrame([]),
             "statusCode": 7400,
-            "message": "There is some missing values"
+            "message": f"There is no {df_empty} with the id {df_id}"
           }
+          return response
         else:
           result_data = race_result_base_data(prev_results_df, race_results_df, driverId, 
                                                  constructorId, circuitId, year, race_round)
