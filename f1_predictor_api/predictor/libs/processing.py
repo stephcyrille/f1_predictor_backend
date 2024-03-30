@@ -1,7 +1,6 @@
 import math
 import pandas as pd
 import numpy as np
-from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Model
 from circuits.models import Circuit
 from constructors.models import Constructor
@@ -143,3 +142,12 @@ def prepare_the_prediction(df:pd.DataFrame,
   df_pred = df_pred.drop(cols, axis=1)
   df_pred = encode_labels(df_pred, to_encode_label)
   return df_pred
+
+def make_a_prediction(df:pd.DataFrame, loaded_model) -> int:
+  target = 'race_rank'
+  features = [x for x in df.columns if x not in [target]]
+  try:
+    race_rank = loaded_model.predict(df[features])[0]
+  except:
+    race_rank = 99
+  return race_rank

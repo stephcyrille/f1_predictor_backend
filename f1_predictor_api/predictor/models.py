@@ -11,6 +11,7 @@ class PredictorRequest(models.Model):
   raceRound = models.IntegerField('Race round', blank=False, null=False)
   year = models.IntegerField('Year', blank=False, null=False)
   status = models.CharField('Status', max_length=20, default='New')
+  errorMessage = models.TextField('Error Message', null=True, blank=True)
   predicted_rank = models.CharField('Prediction', max_length=2, blank=True, null=True)
   createdDate = models.DateTimeField(blank=True, editable=False, default=timezone.now)
   updateDate = models.DateTimeField(blank=True, editable=False, null=True)
