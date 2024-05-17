@@ -56,4 +56,4 @@ class PredictorResponseSerializer(serializers.ModelSerializer):
 
   class Meta:
     model = PredictorRequest
-    fields = ["driver_img", "driver_name", "circuit_name", "constructor_img", "circuit_name", "predicted_rank"]
+    fields = ["driver_img", "driver_name", "circuit_name", "constructor_img", "predicted_rank"]
