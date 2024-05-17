@@ -9,6 +9,7 @@ class CircuitDetailSerializer(serializers.ModelSerializer):
   circuit_img = serializers.SerializerMethodField()
   card_img = serializers.SerializerMethodField()
   country_img = serializers.SerializerMethodField()
+  round = serializers.SerializerMethodField()
 
   def get_circuit_img(self, instance):
       # TODO add a dumy image istead of an empty string
@@ -33,7 +34,16 @@ class CircuitDetailSerializer(serializers.ModelSerializer):
       except:
          country_img = ''
       return country_img
+  
+  def get_round(self, instance):
+      # TODO add a dumy image istead of an empty string
+      try:
+        card_img_url = get_upload_host(self.context["request"]) + instance.card_img.url
+        round = card_img_url.split("/")[-1].split(".")[0].replace('r', '')
+      except:
+         round = ''
+      return round
 
   class Meta:
     model = Circuit
-    fields = ['circuitId', 'name', 'location', 'country', 'circuit_img', 'card_img', 'country_img']
+    fields = ['circuitId', 'name', 'location', 'country', 'circuit_img', 'card_img', 'country_img', 'round']
