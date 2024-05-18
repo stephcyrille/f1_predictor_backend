@@ -8,6 +8,7 @@ def get_upload_host(request):
 class DriverDetailSerializer(serializers.ModelSerializer):
   driver_img = serializers.SerializerMethodField()
   constructor_img = serializers.SerializerMethodField()
+  cid = serializers.SerializerMethodField()
 
   def get_driver_img(self, instance):
     # TODO add a dumy image istead of an empty string
@@ -24,7 +25,11 @@ class DriverDetailSerializer(serializers.ModelSerializer):
     except:
       constructor_img = ''
     return constructor_img
+  
+  def get_cid(self, instance):
+    cid = instance.constructorId.constructorId
+    return cid
 
   class Meta:
     model = Driver
-    fields = ['driverId', 'constructorId', 'full_name', 'number', 'nationality', 'driver_img', 'constructor_img']
+    fields = ['driverId', 'constructorId', 'full_name', 'number', 'nationality', 'driver_img', 'constructor_img', 'cid']
