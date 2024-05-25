@@ -23,4 +23,4 @@ class Command(BaseCommand):
           constructor_times_in_top_10=row['constructor_times_in_top_10']
         )
         constructor.save()
-    self.stdout.write(self.style.SUCCESS('Data imported successfully'))
+    self.stdout.write(self.style.SUCCESS('Constructors Data imported successfully'))

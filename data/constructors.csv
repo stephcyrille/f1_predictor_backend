@@ -1,0 +1,212 @@
+constructorId,constructor_name,constructor_country,constructor_is_active,constructor_races_won,constructor_avg_point,constructor_times_in_top_10
+1,McLaren,British,1,179,3.3641509433962264,1110
+2,BMW Sauber,German,0,1,2.2,91
+3,Williams,British,1,114,2.243008079552517,764
+4,Renault,French,0,35,2.2579415501905973,390
+5,Toro Rosso,Italian,0,1,0.9328358208955224,158
+6,Ferrari,Italian,1,243,4.3434289329396885,1614
+7,Toyota,Japanese,0,0,0.9946428571428572,133
+8,Super Aguri,Japanese,0,0,0.05128205128205128,3
+9,Red Bull,Austrian,1,104,9.46111111111111,530
+10,Force India,Indian,0,0,2.589622641509434,211
+11,Honda,Japanese,0,3,1.0263157894736843,65
+12,Spyker,Dutch,0,0,0.029411764705882353,1
+13,MF1,Russian,0,0,0.0,2
+14,Spyker MF1,Dutch,0,0,0.0,0
+15,Sauber,Swiss,0,0,0.70595690747782,301
+16,BAR,British,0,0,0.961864406779661,115
+17,Jordan,Irish,0,4,0.582,186
+18,Minardi,Italian,0,0,0.05654761904761905,119
+19,Jaguar,British,0,0,0.28823529411764703,62
+20,Prost,French,0,0,0.21212121212121213,53
+21,Arrows,British,0,0,0.24067796610169492,201
+22,Benetton,Italian,0,27,1.6567307692307693,301
+23,Brawn,British,0,8,5.0588235294117645,32
+24,Stewart,British,0,1,0.47959183673469385,27
+25,Tyrrell,British,0,23,0.8070374574347332,354
+26,Lola,British,0,0,0.16363636363636364,33
+27,Ligier,French,0,9,0.6350245499181669,251
+28,Forti,Italian,0,0,0.0,9
+29,Footwork,British,0,0,0.12886597938144329,51
+30,Pacific,British,0,0,0.0,3
+31,Simtek,British,0,0,0.0,5
+32,Team Lotus,British,0,45,1.142365097588978,367
+33,Larrousse,French,0,0,0.10185185185185185,54
+34,Brabham,British,0,23,0.9531722054380665,242
+35,Dallara,Italian,0,0,0.10416666666666667,40
+36,Fondmetal,Italian,0,0,0.0,2
+37,March,British,0,3,0.2824427480916031,140
+38,Andrea Moda,Italian,0,0,0.0,0
+39,AGS,French,0,0,0.016260162601626018,13
+40,Lambo,Italian,0,0,0.0,2
+41,Leyton House,British,0,0,0.125,13
+42,Coloni,Italian,0,0,0.0,2
+44,Euro Brun,Italian,0,0,0.0,0
+45,Osella,Italian,0,0,0.01984126984126984,17
+46,Onyx,British,0,0,0.11538461538461539,5
+47,Life,Italian,0,0,0.0,0
+48,Rial,German,0,0,0.125,7
+49,Zakspeed,German,0,0,0.015037593984962405,15
+50,RAM,British,0,0,0.0,9
+51,Alfa Romeo,Swiss,1,11,0.8213457076566125,125
+52,Spirit,British,0,0,0.0,6
+53,Toleman,British,0,0,0.1984732824427481,21
+54,ATS,Italian,0,0,0.043209876543209874,22
+55,Theodore,Hong Kong,0,0,0.03125,7
+56,Fittipaldi,Brazilian,0,0,0.2838709677419355,40
+57,Ensign,British,0,0,0.12337662337662338,26
+58,Shadow,British,0,1,0.2796208530805687,64
+59,Wolf,Canadian,0,3,1.0,24
+60,Merzario,Italian,0,0,0.0,0
+61,Kauhsen,German,0,0,0.0,0
+62,Rebaque,Mexican,0,0,0.0,0
+63,Surtees,British,0,0,0.2076923076923077,67
+64,Hesketh,British,0,1,0.4948453608247423,25
+65,Martini,French,0,0,0.0,3
+66,BRM,British,0,17,0.9564056939501779,241
+67,Penske,American,0,1,0.5,20
+68,LEC,British,0,0,0.0,0
+69,McGuire,Australian,0,0,0.0,0
+70,Boro,Dutch,0,0,0.0,1
+71,Apollon,Swiss,0,0,0.0,0
+72,Kojima,Japanese,0,0,0.0,0
+73,Parnelli,American,0,0,0.375,6
+74,Maki,Japanese,0,0,0.0,0
+75,Embassy Hill,British,0,0,0.15789473684210525,6
+76,Lyncar,British,0,0,0.0,0
+77,Trojan,British,0,0,0.0,2
+78,Amon,New Zealander,0,0,0.0,0
+79,Token,British,0,0,0.0,0
+80,Iso Marlboro,British,0,0,0.10909090909090909,14
+81,Tecno,Italian,0,0,0.09090909090909091,1
+82,Matra,French,0,0,0.7605633802816901,41
+83,Politoys,British,0,0,0.0,0
+84,Connew,British,0,0,0.0,0
+85,Bellasi,Swiss,0,0,0.0,0
+86,De Tomaso,Italian,0,0,0.0,1
+87,Cooper,British,0,2,0.5048543689320388,46
+88,Eagle,American,0,0,0.0,0
+89,LDS,South African,0,0,0.0,0
+90,Protos,British,0,0,0.0,0
+91,Shannon,British,0,0,0.0,0
+92,Scirocco,British,0,0,0.0,1
+93,RE,Rhodesian,0,0,0.0,0
+94,BRP,British,0,0,0.5789473684210527,9
+95,Porsche,German,0,1,0.5952380952380952,39
+96,Derrington,British,0,0,0.0,0
+97,Gilby,British,0,0,0.0,0
+98,Stebro,Canadian,0,0,0.0,1
+99,Emeryson,British,0,0,0.0,0
+100,ENB,Belgian,0,0,0.0,0
+101,JBW,British,0,0,0.0,0
+102,Ferguson,British,0,0,0.0,0
+103,MBM,Swiss,0,0,0.0,0
+104,Behra-Porsche,Italian,0,0,0.0,1
+105,Maserati,Italian,0,9,0.7182110091743119,211
+106,Scarab,American,0,0,0.0,1
+107,Watson,American,0,3,1.6363636363636365,8
+108,Epperly,American,0,2,2.588235294117647,10
+109,Phillips,American,0,0,1.0,5
+110,Lesovsky,American,0,0,0.6666666666666666,6
+111,Trevis,American,0,0,0.16666666666666666,2
+112,Meskowski,American,0,0,0.0,1
+113,Kurtis Kraft,American,0,5,0.5752212389380531,69
+114,Kuzma,American,0,1,0.5384615384615384,9
+115,Christensen,American,0,0,0.0,0
+116,Ewing,American,0,0,0.0,0
+117,Aston Martin,British,1,0,2.5609756097560976,58
+118,Vanwall,British,0,10,1.5211267605633803,30
+119,Moore,American,0,0,0.0,2
+120,Dunn,American,0,0,0.0,0
+121,Elder,American,0,0,0.0,0
+122,Sutton,American,0,0,0.0,0
+123,Fry,British,0,0,0.0,0
+124,Tec-Mec,Italian,0,0,0.0,0
+125,Connaught,British,0,0,0.3148148148148148,9
+126,Alta,British,0,0,0.0,1
+127,OSCA,Italian,0,0,0.0,2
+128,Gordini,French,0,0,0.24509803921568626,44
+129,Stevens,American,0,0,0.0,3
+130,Bugatti,French,0,0,0.0,0
+131,Mercedes,German,1,125,12.259657534246575,483
+132,Lancia,Italian,0,0,0.8181818181818182,3
+133,HWM,British,0,0,0.0425531914893617,11
+134,Schroeder,American,0,0,0.25,1
+135,Pawl,American,0,0,0.0,0
+136,Pankratz,American,0,0,0.0,0
+137,Arzani-Volpini,Italian,0,0,0.0,0
+138,Nichels,American,0,0,0.0,1
+139,Bromme,American,0,0,0.0,0
+140,Klenk,German,0,0,0.0,0
+141,Simca,French,0,0,0.1724137931034483,7
+142,Turner,American,0,0,0.0,0
+143,Del Roy,American,0,0,0.0,0
+144,Veritas,German,0,0,0.0,3
+145,BMW,German,0,0,0.0,0
+146,EMW,East German,0,0,0.0,0
+147,AFM,German,0,0,0.0,1
+148,Frazer Nash,British,0,0,0.75,2
+149,Sherman,American,0,0,1.5,1
+150,Deidt,American,0,0,1.25,4
+151,ERA,British,0,0,0.0,5
+152,Aston Butterworth,British,0,0,0.0,0
+153,Cisitalia,Italian,0,0,0.0,0
+154,Talbot-Lago,French,0,0,0.3048780487804878,40
+155,Hall,American,0,0,0.0,0
+156,Marchese,American,0,0,0.0,0
+157,Langley,American,0,0,0.0,0
+158,Rae,American,0,0,0.0,0
+159,Olson,American,0,0,0.0,0
+160,Wetteroth,American,0,0,0.0,0
+161,Adams,American,0,0,0.0,0
+162,Snowberger,American,0,0,0.0,0
+163,Milano,Italian,0,0,0.0,0
+164,HRT,Spanish,0,0,0.0,0
+167,Cooper-Maserati,British,0,2,0.6194029850746269,61
+166,Virgin,British,0,0,0.0,0
+168,Cooper-OSCA,British,0,0,0.0,0
+169,Cooper-Borgward,British,0,0,0.0,1
+170,Cooper-Climax,British,0,12,1.2555970149253732,134
+171,Cooper-Castellotti,British,0,0,0.5,1
+172,Lotus-Climax,British,0,22,1.206008583690987,99
+173,Lotus-Maserati,British,0,0,0.0,0
+174,De Tomaso-Osca,Italian,0,0,0.0,0
+175,De Tomaso-Alfa Romeo,Italian,0,0,0.0,0
+176,Lotus-BRM,British,0,1,0.2396694214876033,38
+177,Lotus-Borgward,British,0,0,0.0,0
+178,Cooper-Alfa Romeo,British,0,0,0.0,0
+179,De Tomaso-Ferrari,Italian,0,0,0.0,0
+180,Lotus-Ford,British,0,11,1.6328125,69
+181,Brabham-BRM,British,0,0,0.3170731707317073,18
+182,Brabham-Ford,British,0,2,1.1724137931034482,26
+183,Brabham-Climax,British,0,2,0.8387096774193549,45
+184,LDS-Climax,South African,0,0,0.0,1
+185,LDS-Alfa Romeo,South African,0,0,0.0,0
+186,Cooper-Ford,British,0,0,0.0,0
+187,McLaren-Ford,British,0,4,1.6436781609195403,55
+188,McLaren-Serenissima,British,0,0,0.5,1
+189,Eagle-Climax,American,0,0,0.3076923076923077,4
+190,Eagle-Weslake,American,0,1,0.6190476190476191,4
+191,Brabham-Repco,British,0,8,2.272727272727273,41
+192,Cooper-Ferrari,British,0,0,0.0,0
+193,Cooper-ATS,British,0,0,0.0,0
+194,McLaren-BRM,British,0,0,0.42857142857142855,5
+195,Cooper-BRM,British,0,0,0.9523809523809523,10
+196,Matra-Ford,French,0,9,3.25,34
+197,BRM-Ford,British,0,0,0.0,1
+198,McLaren-Alfa Romeo,British,0,0,0.0,1
+199,March-Alfa Romeo,British,0,0,0.0,0
+200,March-Ford,British,0,0,0.8604651162790697,12
+201,Lotus-Pratt &amp; Whitney,British,0,0,0.0,1
+202,Shadow-Ford,British,0,0,0.36538461538461536,8
+203,Shadow-Matra,British,0,0,0.0,0
+204,Brabham-Alfa Romeo,British,0,0,0.3050847457627119,17
+205,Lotus,Malaysian,0,0,0.0,0
+206,Marussia,Russian,0,0,0.01834862385321101,1
+207,Caterham,Malaysian,0,0,0.0,0
+208,Lotus F1,British,0,2,4.584415584415584,75
+209,Manor Marussia,British,0,0,0.01282051282051282,1
+210,Haas F1 Team,American,1,0,0.7724358974358975,56
+211,Racing Point,British,0,1,3.723684210526316,42
+213,AlphaTauri,Italian,1,1,1.9657534246575343,52
+214,Alpine F1 Team,French,1,1,3.3392857142857144,71

@@ -25,4 +25,4 @@ class Command(BaseCommand):
           createdDate=timezone.now()
         )
         circuit.save()
-    self.stdout.write(self.style.SUCCESS('Data imported successfully'))
+    self.stdout.write(self.style.SUCCESS('Circuit Data imported successfully'))

@@ -1,0 +1,37 @@
+# docker-compose.yml
+version: '3.9'
+
+services:
+  api_db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file:
+      - .env
+
+  web_api:
+    build: .
+    working_dir: /f1_predictor_api/f1_predictor_api
+    command: |
+      sh -c "
+      python manage.py makemigrations && 
+      python manage.py migrate && 
+      python manage.py add_superuser && 
+      python manage.py import_circuits ../data/circuits.csv && 
+      python manage.py import_constructors ../data/constructors.csv && 
+      python manage.py import_drivers ../data/drivers.csv && 
+      python manage.py import_race_results ../data/races_results.csv && 
+      python manage.py collectstatic && 
+      python manage.py runserver 0.0.0.0:8000
+      "
+    volumes:
+      - .:/f1_predictor_api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - api_db
+    env_file:
+      - .env
+
+volumes:
+  postgres_data:

@@ -11,34 +11,33 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-from decouple import config
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-BASE_ENV = config("ENV_NAME", default="DEV")
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config("SECRET_KEY", default='django-insecure-eow#sea5cj!xa0&-*qce6^7n@1e8ut7h(_q5p$uynxxkd9sz5(')
+
+# Set variables for each environment
+ENV = os.environ.get('DJANGO_ENV', 'PROD')
+
+SECRET_KEY = os.environ.get(
+    "DJANGO_SECRET_KEY", 'django-insecure-eow#sea5cj!xa0&-*qce6^7n@1e8ut7h(_q5p$uynxxkd9sz5('
+) 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if 'DEV' == BASE_ENV or 'TEST' == BASE_ENV:
-    DEBUG = True
-else:
+DEBUG = True
+if ENV == 'PROD':
     DEBUG = False
 
-# TODO Implement ALlow host management system for each env
-# if 'DEV' == BASE_ENV:
-#     ALLOWED_HOSTS = []
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1,[::1]").split(",")
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -89,13 +88,24 @@ WSGI_APPLICATION = 'f1_predictor_api.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if ENV == 'PROD':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.environ.get("DB_NAME"),
+            'USER': os.environ.get("DB_USER"),
+            'PASSWORD': os.environ.get("DB_PASSWORD"),
+            'HOST': os.environ.get("DB_HOST"), 
+            'PORT': os.environ.get("DB_PORT"),
+        }   
+    }   
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
 
 
 # Password validation
@@ -131,20 +141,22 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
-
 STATIC_URL = 'static/'
-if DEBUG:
-    STATIC_ROOT = BASE_DIR / 'staticfiles' # For Deployment
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'mediafiles'
+
+if ENV == 'PROD':
+    STATIC_ROOT = BASE_DIR / 'staticfiles' # For Deployment
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-if 'DEV' == BASE_ENV :
+if ENV == 'PROD':
+    CSRF_COOKIE_SECURE = True
+else:
     # Allow every requests from this domain
     CORS_ALLOWED_ORIGINS = [
         "http://localhost:3000",

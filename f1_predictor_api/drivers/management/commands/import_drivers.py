@@ -39,4 +39,4 @@ class Command(BaseCommand):
           createdDate=timezone.now()
         )
         driver.save()
-    self.stdout.write(self.style.SUCCESS('Data imported successfully'))
+    self.stdout.write(self.style.SUCCESS('Drivers Data imported successfully'))

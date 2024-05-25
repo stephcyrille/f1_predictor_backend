@@ -33,4 +33,4 @@ class Command(BaseCommand):
           name=row['name']
         )
         race_results.save()
-    self.stdout.write(self.style.SUCCESS('Data imported successfully'))
+    self.stdout.write(self.style.SUCCESS('Race results Data imported successfully'))
