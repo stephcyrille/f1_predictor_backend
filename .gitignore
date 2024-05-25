@@ -164,3 +164,6 @@ cython_debug/
 
 # Models file extension
 *.pkl
+
+# Ignore django static files
+f1_predictor_api/staticfiles/
