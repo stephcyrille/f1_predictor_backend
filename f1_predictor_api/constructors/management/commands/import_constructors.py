@@ -13,14 +13,17 @@ class Command(BaseCommand):
     with open(csv_file, 'r') as file:
       reader = csv.DictReader(file)
       for row in reader:
-        constructor = Constructor(
-          constructorId=row['constructorId'],
-          constructor_name=row['constructor_name'],
-          constructor_country=row['constructor_country'],
-          constructor_is_active=row['constructor_is_active'],
-          constructor_races_won=row['constructor_races_won'],
-          constructor_avg_point=row['constructor_avg_point'],
-          constructor_times_in_top_10=row['constructor_times_in_top_10']
-        )
-        constructor.save()
+        try:
+          constructor = Constructor(
+            constructorId=row['constructorId'],
+            constructor_name=row['constructor_name'],
+            constructor_country=row['constructor_country'],
+            constructor_is_active=row['constructor_is_active'],
+            constructor_races_won=row['constructor_races_won'],
+            constructor_avg_point=row['constructor_avg_point'],
+            constructor_times_in_top_10=row['constructor_times_in_top_10']
+          )
+          constructor.save()
+        except Exception as e:
+          self.stdout.write(self.style.ERROR(f'Error importing Constructors Data: {e}'))
     self.stdout.write(self.style.SUCCESS('Constructors Data imported successfully'))

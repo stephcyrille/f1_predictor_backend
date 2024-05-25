@@ -4,12 +4,15 @@ FROM python:3.10-slim
 # Set the working directory in the container
 WORKDIR /f1_predictor_api
 
+# Install system dependencies
+RUN apt-get update \
+    && apt-get install -y build-essential libpq-dev
+
 # Copy the current directory contents into the container at /app
 COPY . /f1_predictor_api
 
 # Install any needed packages specified in requirements.txt
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Make port 8000 available to the world outside this container
 EXPOSE 8000
@@ -21,4 +24,4 @@ ENV DJANGO_SETTINGS_MODULE=f1_predictor_api.settings
 ENV PYTHONUNBUFFERED=1
 
 # Run migrations and start the server
-CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "f1_predictor_api.wsgi:application"]

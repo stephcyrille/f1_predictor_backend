@@ -14,15 +14,18 @@ class Command(BaseCommand):
     with open(csv_file, 'r') as file:
       reader = csv.DictReader(file)
       for row in reader:
-        circuit = Circuit(
-          circuitId=row['circuitId'],
-          name=row['name'],
-          location=row['location'],
-          country=row['country'],
-          lat=row['lat'],
-          lng=row['lng'],
-          circuits_is_active=row['circuits_is_active'],
-          createdDate=timezone.now()
-        )
-        circuit.save()
+        try:
+          circuit = Circuit(
+            circuitId=row['circuitId'],
+            name=row['name'],
+            location=row['location'],
+            country=row['country'],
+            lat=row['lat'],
+            lng=row['lng'],
+            circuits_is_active=row['circuits_is_active'],
+            createdDate=timezone.now()
+          )
+          circuit.save()
+        except Exception as e:
+          self.stdout.write(self.style.ERROR(f'Error importing Circuit Data: {e}'))
     self.stdout.write(self.style.SUCCESS('Circuit Data imported successfully'))
