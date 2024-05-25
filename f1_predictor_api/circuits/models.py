@@ -28,6 +28,7 @@ class Circuit(models.Model):
   picture = models.FileField(upload_to=circuit_path, null=True, blank=True)
   card_img = models.FileField(upload_to=circuit_card_path, null=True, blank=True)
   country_img = models.FileField(upload_to=circuit_country_path, null=True, blank=True)
+  raceRound = models.CharField('Round', max_length=2, blank=True, null=True)
 
   def save(self, *args, **kwargs):
     """ 

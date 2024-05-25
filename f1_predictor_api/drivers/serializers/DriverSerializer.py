@@ -27,7 +27,10 @@ class DriverDetailSerializer(serializers.ModelSerializer):
     return constructor_img
   
   def get_cid(self, instance):
-    cid = instance.constructorId.constructorId
+    try:
+      cid = instance.constructorId.constructorId
+    except:
+      cid = ''
     return cid
 
   class Meta:

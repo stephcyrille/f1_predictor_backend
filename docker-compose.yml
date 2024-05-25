@@ -38,6 +38,7 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       - ./f1_predictor_api/staticfiles:/f1_predictor_api/staticfiles
+      - ./f1_predictor_api/mediafiles:/f1_predictor_api/mediafiles
     ports:
       - "80:80"
     depends_on:

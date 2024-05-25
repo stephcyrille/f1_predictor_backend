@@ -143,11 +143,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 STATIC_URL = 'static/'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'mediafiles'
+MEDIA_URL = 'media/'
 
 if ENV == 'PROD':
     STATIC_ROOT = BASE_DIR / 'staticfiles' # For Deployment
+    MEDIA_ROOT = BASE_DIR / 'mediafiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -156,6 +156,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 if ENV == 'PROD':
     CSRF_COOKIE_SECURE = True
+    CORS_ALLOWED_ORIGINS = os.getenv("DJANGO_CORS_ALLOWED_ORIGINS", "localhost,127.0.0.1,[::1]").split(",")
 else:
     # Allow every requests from this domain
     CORS_ALLOWED_ORIGINS = [

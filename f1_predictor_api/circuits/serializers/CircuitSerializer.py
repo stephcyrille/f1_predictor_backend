@@ -36,13 +36,7 @@ class CircuitDetailSerializer(serializers.ModelSerializer):
       return country_img
   
   def get_round(self, instance):
-      # TODO add a dumy image istead of an empty string
-      try:
-        card_img_url = get_upload_host(self.context["request"]) + instance.card_img.url
-        round = card_img_url.split("/")[-1].split(".")[0].replace('r', '')
-      except:
-         round = ''
-      return round
+      return instance.raceRound
 
   class Meta:
     model = Circuit
