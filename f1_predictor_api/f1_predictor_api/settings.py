@@ -157,6 +157,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 if ENV == 'PROD':
     CSRF_COOKIE_SECURE = True
     CORS_ALLOWED_ORIGINS = os.getenv("DJANGO_CORS_ALLOWED_ORIGINS", "localhost,127.0.0.1,[::1]").split(",")
+    USE_X_FORWARDED_HOST = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS", "").split(",")
 else:
     # Allow every requests from this domain
     CORS_ALLOWED_ORIGINS = [
