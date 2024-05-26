@@ -34,15 +34,16 @@ services:
       - .env
   
   nginx:
-    image: nginx:latest
+    build: ./nginx
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       - ./f1_predictor_api/staticfiles:/f1_predictor_api/staticfiles
       - ./f1_predictor_api/mediafiles:/f1_predictor_api/mediafiles
     ports:
       - "80:80"
     depends_on:
       - web_api
+    env_file:
+      - .env
 
 volumes:
   postgres_data:
