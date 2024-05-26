@@ -9,6 +9,9 @@ class Command(BaseCommand):
     parser.add_argument('csv_file', type=str, help='The path to the CSV file')
 
   def handle(self, *args, **kwargs):
+    if Constructor.objects.exists():
+      self.stdout.write(self.style.WARNING('Constructors Data already imported'))
+      return
     csv_file = kwargs['csv_file']
     with open(csv_file, 'r') as file:
       reader = csv.DictReader(file)
