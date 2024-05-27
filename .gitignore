@@ -168,3 +168,6 @@ cython_debug/
 # Ignore django static files
 f1_predictor_api/staticfiles/
 f1_predictor_api/mediafiles/
+
+# Ignore certbot files
+certbot/
